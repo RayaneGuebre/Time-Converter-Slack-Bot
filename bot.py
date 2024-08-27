@@ -6,12 +6,14 @@ from flask import Flask, request, Response
 from slackeventsapi import SlackEventAdapter
 from pytz import timezone
 import pytz
+from slack_sdk import WebClient
 from datetime import datetime
+import time
 
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
-client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
+client = slack.WebClient(token=os.environ['SLACK_TOKEN'], timeout = 30)
  
 app = Flask(__name__)
 
@@ -47,35 +49,24 @@ def cet():
     user_id = data.get('user_id')
     command_text = data.get('text')
     channel_id = data.get('channel_id')
-    
-    text = input("Time to CET\n")
+    text = command_text
     if "." in text:
         text = text.replace(".", ":")
     text = text.split(" ")
-    time = text[0]
+    time_tz = text[0]
     timezone = text[1]
     timezone = timezone.upper();
     if timezone in timezones:
-
-        time = datetime.strptime(time, '%H:%M')
-        print(time)
+        time_tz = datetime.strptime(time, '%H:%M')
 
         now = datetime.now()
-        time = time.replace(year=now.year, month=now.month, day=now.day)
-    
+        time_tz = time.replace(year=now.year, month=now.month, day=now.day)
         choosed_timezone = pytz.timezone(timezones[timezone])
-        print(choosed_timezone)
-    
         choosed_time = choosed_timezone.localize(time)
-        print(choosed_time)
-    
         cet_timezone = pytz.timezone('Europe/Paris')
-        print(cet_timezone)
-    
         time_cet = choosed_time.astimezone(cet_timezone)
-    
         response = time_cet.strftime('%H:%M %Z')
-        print(response)
+        time.sleep(2)
     else:
         print("Invalid Timezone")
     client.chat_postMessage(channel=channel_id, text=response)
@@ -86,15 +77,37 @@ def gmt():
     user_id = data.get('user_id')
     command_text = data.get('text')
     channel_id = data.get('channel_id')
-    
-    text = command_text.split(" ")
-    time = text[0]
+    text = command_text
+    if "." in text:
+        text = text.replace(".", ":")
+    text = text.split(" ")
+    time_tz = text[0]
     timezone = text[1]
     timezone = timezone.upper();
+    if timezone in timezones:
 
+        time_tz = datetime.strptime(time, '%H:%M')
+        
 
-    response = hours + "in" + timezone + "--->"
-    time_cet = time.astimezone(timezone('Europe/London'))
+        now = datetime.now()
+        time_tz = time.replace(year=now.year, month=now.month, day=now.day)
+    
+        choosed_timezone = pytz.timezone(timezones[timezone])
+    
+    
+        choosed_time = choosed_timezone.localize(time)
+    
+    
+        gmt_timezone = pytz.timezone('Europe/London')
+        
+    
+        time_gmt = choosed_time.astimezone(gmt_timezone)
+    
+        response = time_gmt.strftime('%H:%M %Z')
+        
+        time.sleep(2)
+    else:
+        print("Invalid Timezone")
     
     client.chat_postMessage(channel=channel_id, text=response)
     return Response(), 200
