@@ -4,7 +4,7 @@ A slack bot that convert time to a specific timezone
 # Available Commands and Timezones
 Each command below converts a given time from the chosen timezone to the specified target timezone.
 
-'/gmt 12:00 [timezone]' 
+/gmt 12:00 [timezone] 
   Converts 12:00 from the chosen timezone to Greenwich Mean Time (GMT)
 
 /cet 12:00 [timezone] 
