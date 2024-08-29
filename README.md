@@ -25,10 +25,10 @@ Converts 12:00 from the chosen timezone to Central Standard Time (CST) in the US
 - /mst 12:00 [timezone] 
 Converts 12:00 from the chosen timezone to Mountain Standard Time (MST)
 
-/pst 12:00 [timezone] 
+- /pst 12:00 [timezone] 
 Converts 12:00 from the chosen timezone to Pacific Standard Time (PST)
 
-/ist 12:00 [timezone] 
+- /ist 12:00 [timezone] 
 Converts 12:00 from the chosen timezone to India Standard Time (IST)
 
 - /cst_cn 12:00 [timezone] 
@@ -61,23 +61,23 @@ Converts 12:00 from the chosen timezone to Argentina Time (ART)
 Converts 12:00 from the chosen timezone to Chile Standard Time (CLT)
 
 # Available Timezones
-GMT (Greenwich Mean Time)
-CET (Central European Time)
-EET (Eastern European Time)
-MSK (Moscow Standard Time)
-EST (Eastern Standard Time, US)
-CST_US (Central Standard Time, US)
-MST (Mountain Standard Time, US)
-PST (Pacific Standard Time, US)
-IST (India Standard Time)
-CST_CN (China Standard Time)
-JST (Japan Standard Time)
-AEST (Australian Eastern Standard Time)
-NZST (New Zealand Standard Time)
-SAST (South Africa Standard Time)
-WAT (West Africa Time)
-AST (Arabian Standard Time)
-ART (Argentina Time)
-BRT (Brasília Time)
-CLT (Chile Standard Time)
+- GMT (Greenwich Mean Time)
+- CET (Central European Time)
+- EET (Eastern European Time)
+- MSK (Moscow Standard Time)
+- EST (Eastern Standard Time, US)
+- CST_US (Central Standard Time, US)
+- MST (Mountain Standard Time, US)
+- PST (Pacific Standard Time, US)
+- IST (India Standard Time)
+- CST_CN (China Standard Time)
+- JST (Japan Standard Time)
+- AEST (Australian Eastern Standard Time)
+- NZST (New Zealand Standard Time)
+- SAST (South Africa Standard Time)
+- WAT (West Africa Time)
+- AST (Arabian Standard Time)
+- ART (Argentina Time)
+- BRT (Brasília Time)
+- CLT (Chile Standard Time)
 
