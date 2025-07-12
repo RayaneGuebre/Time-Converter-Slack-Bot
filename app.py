@@ -4,6 +4,9 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 import pytz
 from datetime import datetime
 
+from dotenv import load_dotenv
+load_dotenv()
+
 timezones = {
             "GMT" : "Europe/London",
             "CET" : "Europe/Paris",
@@ -119,30 +122,16 @@ def repeat_text(ack, respond, command):
         timezone = text[1]
         timezone = timezone.upper();
         if timezone in timezones:
-
             time = datetime.strptime(time, '%H:%M')
-        
-
             now = datetime.now()
             time = time.replace(year=now.year, month=now.month, day=now.day)
-    
             choosed_timezone = pytz.timezone(timezones[timezone])
-            
-    
             choosed_time = choosed_timezone.localize(time)
-            
-    
             eet_timezone = pytz.timezone('Europe/Athens')
-
-    
             time_eet = choosed_time.astimezone(eet_timezone)
-    
             response = time_eet.strftime('%H:%M %Z')
-            
         else:
             response = "Invalid Timezone"
-    
-    
         respond(response)
 @app.command("/msk")
 def repeat_text(ack, respond, command):
@@ -781,8 +770,7 @@ def repeat_text(ack, respond, command):
             response = time_clt.strftime('%H:%M %Z')
         else:
             response = "Invalid Timezone"
-    
-    
+
         respond(response)
 
 # Start your app
