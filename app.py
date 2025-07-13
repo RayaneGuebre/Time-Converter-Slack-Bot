@@ -17,7 +17,7 @@ timezones = {
             "MST" : "America/Denver",
             "PST" : "America/Los_Angeles",
             "IST" : "Asia/Kolkata",
-            "CST_CN " : "Asia/Shanghai",
+            "CST_CN" : "Asia/Shanghai",
             "JST" : "Asia/Tokyo",
             "AEST" : "Australia/Sydney",
             "NZST" : "Pacific/Auckland",
@@ -159,7 +159,7 @@ def repeat_text(ack, respond, command):
             choosed_time = choosed_timezone.localize(time)
             
     
-            msk_timezone = pytz.timezone('Europe/Moskow')
+            msk_timezone = pytz.timezone('Europe/Moscow')
             
     
             time_msk = choosed_time.astimezone(msk_timezone)
@@ -278,43 +278,6 @@ def repeat_text(ack, respond, command):
             time_mst = choosed_time.astimezone(mst_timezone)
     
             response = time_mst.strftime('%H:%M %Z')
-        else:
-            response = "Invalid Timezone"
-    
-    
-        respond(response)
-@app.command("/msk")
-def repeat_text(ack, respond, command):
-        # Acknowledge command request
-        ack()
-        text = command['text']
-        text = str(text)
-        if "." in text:
-            text = text.replace(".", ":")
-        text = text.split(" ")
-        time = text[0]
-        timezone = text[1]
-        timezone = timezone.upper();
-        if timezone in timezones:
-
-            time = datetime.strptime(time, '%H:%M')
-            
-
-            now = datetime.now()
-            time = time.replace(year=now.year, month=now.month, day=now.day)
-    
-            choosed_timezone = pytz.timezone(timezones[timezone])
-            
-    
-            choosed_time = choosed_timezone.localize(time)
-            
-    
-            msk_timezone = pytz.timezone('Europe/Moskow')
-            
-    
-            time_msk = choosed_time.astimezone(msk_timezone)
-    
-            response = time_msk.strftime('%H:%M %Z')
         else:
             response = "Invalid Timezone"
     
@@ -459,7 +422,7 @@ def repeat_text(ack, respond, command):
             choosed_time = choosed_timezone.localize(time)
             
     
-            jst_timezone = pytz.timezone('Asia/Japan')
+            jst_timezone = pytz.timezone('Asia/Tokyo')
             
     
             time_jst = choosed_time.astimezone(jst_timezone)
@@ -698,7 +661,7 @@ def repeat_text(ack, respond, command):
     
         respond(response)
     
-@app.command("/msk")
+@app.command("/brt")
 def repeat_text(ack, respond, command):
         # Acknowledge command request
         ack()
@@ -724,7 +687,7 @@ def repeat_text(ack, respond, command):
             choosed_time = choosed_timezone.localize(time)
             
     
-            brt_timezone = pytz.timezone('America/San_Paulo')
+            brt_timezone = pytz.timezone('America/Sao_Paulo')
             
     
             time_brt = choosed_time.astimezone(brt_timezone)
